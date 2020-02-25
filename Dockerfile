@@ -14,4 +14,4 @@ ENV php_conf /etc/php/7.0/fpm/php.ini
 ENV nginx_conf /etc/nginx/nginx.conf
 
 # installation database
-RUN apt-get install mysql-server
+RUN apt-get install -y mysql-server
