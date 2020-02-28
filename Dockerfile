@@ -15,11 +15,6 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y mariadb-server
 RUN apt-get install php7.4.2-fpm php7.4.2-gd php7.4.2-mysql php7.4.2-cli \
 php7.4.2-common php7.4.2-curl php7.4.2-opcache php7.4.2-json php7.4.2-imap php7.4.2-mbstring php7.4.2-xml
 
-# ENV variables definition
-ENV nginx_vhost /etc/nginx/sites-available/default
-ENV php_conf /etc/php/7.0/fpm/php.ini
-ENV nginx_conf /etc/nginx/nginx.conf
-
 #install wordpress
 RUN cd /tmp \
 	&& wget https://wordpress.org/latest.tar.gz \
@@ -37,6 +32,11 @@ RUN cd /tmp \
 	&& mv phpMyAdmin* /var/www/html/phpmyadmin \
 	&& chown -R www-data:www-data /var/www/html/phpmyadmin \ 
 	&& chmod 777 /var/www/html/phpmyadmin
+
+# ENV variables definition
+ENV nginx_vhost /etc/nginx/sites-available/default
+ENV php_conf /etc/php/7.0/fpm/php.ini
+ENV nginx_conf /etc/nginx/nginx.conf
 
 # installation database
 RUN apt-get install -y mysql-server && -y mysql_secure_installation
