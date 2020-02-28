@@ -41,9 +41,6 @@ ENV nginx_conf /etc/nginx/nginx.conf
 # installation database
 RUN apt-get install -y mysql-server && -y mysql_secure_installation
 
-# instllation wordpress
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-
 # creation of a new directory to hold the PHP website :
 
 RUN mkdir /var/www/muh_domain
