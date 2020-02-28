@@ -20,6 +20,24 @@ ENV nginx_vhost /etc/nginx/sites-available/default
 ENV php_conf /etc/php/7.0/fpm/php.ini
 ENV nginx_conf /etc/nginx/nginx.conf
 
+#install wordpress
+RUN cd /tmp \
+	&& wget https://wordpress.org/latest.tar.gz \
+	&& tar -zxvf latest.tar.gz \
+	&& mv wordpress/ /var/www/html/wordpress \
+	&& chown -R www-data:www-data /var/www/html/wordpress \
+	&& chmod 755 -R /var/www/html/wordpress/
+
+#install phpmyadmin
+
+RUN cd /tmp \
+	&& wget https://files.phpmyadmin.net/phpMyAdmin/4.9.4/phpMyAdmin-4.9.4-all-languages.tar.gz \
+	&& tar -xvf phpMyAdmin-4.9.4-all-languages.tar.gz \
+	&& rm phpMyAdmin-4.9.4-all-languages.tar.gz \
+	&& mv phpMyAdmin* /var/www/html/phpmyadmin \
+	&& chown -R www-data:www-data /var/www/html/phpmyadmin \ 
+	&& chmod 777 /var/www/html/phpmyadmin
+
 # installation database
 RUN apt-get install -y mysql-server && -y mysql_secure_installation
 
