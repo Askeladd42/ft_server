@@ -1,12 +1,18 @@
 #DDL base image Debian Buster
 
-FROM DEBIAN:BUSTER
+FROM debian:buster
+LABEL maintainer="plam plam@student.42.fr"
 
 # update the software repository
-RUN apt-get update
+RUN apt-get update && apt-get -y upgrade
 
-# install nginx + php 7.4.2 + maria-db
-RUN apt-get install -y nginx php7.4.2-fpm php7.4.2-gd php7.4.2-mysql php7.4.2-cli \
+# install nginx + maria-db
+RUN apt-get install -y nginx
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y mariadb-server
+
+# install php 7.4.2
+
+RUN apt-get install php7.4.2-fpm php7.4.2-gd php7.4.2-mysql php7.4.2-cli \
 php7.4.2-common php7.4.2-curl php7.4.2-opcache php7.4.2-json php7.4.2-imap php7.4.2-mbstring php7.4.2-xml
 
 # ENV variables definition
