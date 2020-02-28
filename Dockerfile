@@ -6,7 +6,7 @@ LABEL maintainer="plam plam@student.42.fr"
 # update the software repository
 RUN apt-get update && apt-get -y upgrade
 
-# install nginx + maria-db
+# install nginx + maria-db (database)
 RUN apt-get install -y nginx
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y mariadb-server
 
@@ -33,14 +33,6 @@ RUN cd /tmp \
 	&& chown -R www-data:www-data /var/www/html/phpmyadmin \ 
 	&& chmod 777 /var/www/html/phpmyadmin
 
-# ENV variables definition
-ENV nginx_vhost /etc/nginx/sites-available/default
-ENV php_conf /etc/php/7.0/fpm/php.ini
-ENV nginx_conf /etc/nginx/nginx.conf
-
-# installation database
-RUN apt-get install -y mysql-server && -y mysql_secure_installation
-
 # creation of a new directory to hold the PHP website :
 
 RUN mkdir /var/www/muh_domain
@@ -61,6 +53,14 @@ COPY srcs/phpmyadmin-config.php /var/www/html/phpmyadmin
 
 COPY srcs/wp-config.php /var/www/html/wordpress
 COPY srcs/wordpress_database.sql /tmp
+RUN service mysql start \
+	&& mysql -u root -e "CREATE DATABASE wordpress_database" \
+    && mysql -u root -e "CREATE USER 'plam'@'localhost' IDENTIFIED BY 'oof'" \
+	&& mysql -u root -e "GRANT ALL PRIVILEGES ON wordpress_database.* TO 'plam'@'localhost' IDENTIFIED BY 'oof'" \
+	&& mysql -u root -e "GRANT ALL PRIVILEGES ON phpmyadmin.* TO 'plam'@'localhost' IDENTIFIED BY 'oof'" \
+	&& mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'plam'@'localhost' IDENTIFIED BY 'oof'" \
+    && mysql -u root -e "FLUSH PRIVILEGES" \
+	&& mysql wordpress_database < /tmp/wordpress_database.sql
 
 # SSL creation
 
