@@ -47,3 +47,28 @@ RUN mkdir /var/www/muh_domain
 RUN mkdir -p /run/php && \
 	chown -R $USER:$USER /var/www/muh_domain && \
 	chown -R www-data:www-data /run/php
+
+# nginx config
+
+COPY srcs/nginx.conf /etc/nginx/sites-available/localhost
+RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
+
+# phpMyAdmin configuration
+
+COPY srcs/phpmyadmin-config.php /var/www/html/phpmyadmin
+
+# wordpress configuration
+
+COPY srcs/wp-config.php /var/www/html/wordpress
+COPY srcs/wordpress_database.sql /tmp
+
+# SSL creation
+
+COPY srcs/localhost.key /etc/ssl/private/nginx-cert.key
+COPY srcs/localhost.crt /etc/ssl/certs/nginx-cert.crt
+
+# starting the server
+
+CMD service nginx start \
+		&& service mysql start \
+		&& service php7.4.2-fpm start && tail -f /dev/null
