@@ -22,4 +22,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 
 # creation of a new directory to hold the PHP website :
 
-RUN mkdir /var/www/(my_domain)
+RUN mkdir /var/www/muh_domain
+RUN mkdir -p /run/php && \
+	chown -R $USER:$USER /var/www/muh_domain && \
+	chown -R www-data:www-data /run/php
