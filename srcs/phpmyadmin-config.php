@@ -17,20 +17,26 @@ declare(strict_types=1);
 *Using shorter will lead to weaker security of encrypted cookies, using longer will cause no harm.
 */
 
-$cfg['blowfish_secret'] = 'kWEFKWJBvwrgjwgEWSvwjk$gjb&#1w4' /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
+$cfg['blowfish_secret'] = 'kWEFKWJBvwrgjwgEWSvwjk$gjb&#1w4ahrGEszqegiob56%#@&' /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
 
 /**
  * Servers configuration
  */
+
 $i = 0;
 
 /**
  * First server
  */
+
 $i++;
+
 /* Authentication type */
+
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
+
 /* Server parameters */
+
 $cfg['Servers'][$i]['host'] = 'localhost';
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = false;

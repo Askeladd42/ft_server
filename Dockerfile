@@ -10,10 +10,10 @@ RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y nginx
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y mariadb-server
 
-# install php 7.4.2
+# install php 7.4
 
-RUN apt-get install php7.4.2-fpm php7.4.2-gd php7.4.2-mysql php7.4.2-cli \
-php7.4.2-common php7.4.2-curl php7.4.2-opcache php7.4.2-json php7.4.2-imap php7.4.2-mbstring php7.4.2-xml
+RUN apt-get install php-fpm php-gd php-mysql php-cli \
+php-common php-curl php-opcache php-json php-imap php-mbstring php-xml
 
 #install wordpress
 RUN cd /tmp \
@@ -71,4 +71,4 @@ COPY srcs/localhost.crt /etc/ssl/certs/nginx-cert.crt
 
 CMD service nginx start \
 		&& service mysql start \
-		&& service php7.4.2-fpm start && tail -f /dev/null
+		&& service php-fpm start && tail -f /dev/null
