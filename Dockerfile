@@ -4,15 +4,15 @@ FROM debian:buster
 LABEL maintainer="plam plam@student.42.fr"
 
 # update the software repository
-RUN apt-get update && apt-get -y upgrade
+RUN apt update && apt -y upgrade
 
 # install nginx + maria-db (database)
-RUN apt-get install -y nginx wget
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y mariadb-server
+RUN apt install -y nginx wget
+RUN DEBIAN_FRONTEND="noninteractive" apt install -y mariadb-server
 
 # install php 7.4
 
-RUN apt-get install -y php-fpm php-gd php-mysql php-cli \
+RUN apt install -y php-fpm php-gd php-mysql php-cli \
 php-common php-curl php-opcache php-json php-imap php-mbstring php-xml
 
 #install wordpress
