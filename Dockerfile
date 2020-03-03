@@ -66,9 +66,11 @@ RUN service mysql start \
 
 COPY srcs/localhost.key /etc/ssl/private/nginx-cert.key
 COPY srcs/localhost.crt /etc/ssl/certs/nginx-cert.crt
+COPY srcs/start.sh /tmp/start.sh
+RUN	 chmod +x /tmp/start.sh
 
 # Open port + starting server
 
 EXPOSE 80 443
 
-ENTRYPOINT [ "srcs/start.sh" ]
+ENTRYPOINT [ "/tmp/start.sh" ]
