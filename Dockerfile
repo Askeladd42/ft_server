@@ -71,4 +71,4 @@ COPY srcs/localhost.crt /etc/ssl/certs/nginx-cert.crt
 
 EXPOSE 80 443
 
-ENTRYPOINT [ "start.sh" ]
+ENTRYPOINT [ "srcs/start.sh" ]
