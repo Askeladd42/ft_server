@@ -12,7 +12,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y mariadb-server
 
 # install php 7.4
 
-RUN apt-get install php-fpm php-gd php-mysql php-cli \
+RUN apt-get install -y php-fpm php-gd php-mysql php-cli \
 php-common php-curl php-opcache php-json php-imap php-mbstring php-xml
 
 #install wordpress
