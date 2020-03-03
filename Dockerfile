@@ -70,8 +70,6 @@ COPY srcs/localhost.crt /etc/ssl/certs/nginx-cert.crt
 # starting the server
 
 CMD service nginx start \
-		&& service mysql start \
-		&& service php7.3-fpm start \
-		&& ["nginx", "-g", "daemon off;"]
-
-EXPOSE 443 80
+	&& service mysql start \
+	&& service php7.3-fpm start \
+	&& ["nginx", "-g", "daemon off;"]
