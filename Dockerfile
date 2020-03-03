@@ -72,4 +72,4 @@ COPY srcs/localhost.crt /etc/ssl/certs/nginx-cert.crt
 CMD service nginx start \
 		&& service mysql start \
 		&& service php7.3-fpm start && tail -f /dev/null \
-		&& nginx -g 'daemon off;'
+		&& ["nginx", "-g", "daemon off;"]
