@@ -10,7 +10,7 @@ RUN apt update && apt -y upgrade
 RUN apt install -y nginx wget
 RUN DEBIAN_FRONTEND="noninteractive" apt install -y mariadb-server
 
-# install php 7.4
+# install php 7.3
 
 RUN apt install -y php-fpm php-gd php-mysql php-cli \
 php-common php-curl php-opcache php-json php-imap php-mbstring php-xml
@@ -71,4 +71,4 @@ COPY srcs/localhost.crt /etc/ssl/certs/nginx-cert.crt
 
 CMD service nginx start \
 		&& service mysql start \
-		&& service php-fpm start && tail -f /dev/null
+		&& service php7.3-fpm start && tail -f /dev/null
