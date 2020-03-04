@@ -33,13 +33,6 @@ RUN cd /tmp \
 	&& chown -R www-data:www-data /var/www/html/phpmyadmin \ 
 	&& chmod 777 /var/www/html/phpmyadmin
 
-# creation of a new directory to hold the PHP website :
-
-RUN mkdir /var/www/muh_domain
-RUN mkdir -p /run/php && \
-	chown -R $USER:$USER /var/www/muh_domain && \
-	chown -R www-data:www-data /run/php
-
 # nginx config
 
 COPY srcs/nginx.conf /etc/nginx/sites-available/localhost
