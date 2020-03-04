@@ -5,7 +5,7 @@ LABEL maintainer="plam plam@student.42.fr"
 
 # update the software repository
 RUN apt-get update && apt-get -y upgrade \
-&& DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends apt-utils
+&& DEBIAN_FRONTEND=noninteractive apt-get install -y apt-utils
 
 # install nginx + maria-db (database)
 RUN apt-get install -y nginx wget
