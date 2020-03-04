@@ -4,10 +4,11 @@ FROM debian:buster
 LABEL maintainer="plam plam@student.42.fr"
 
 # update the software repository
-RUN apt-get update && apt-get -y upgrade
+RUN apt-get update && apt-get -y upgrade && apt-get install -y apt-utils
+
 
 # install nginx + maria-db (database)
-RUN apt-get install -y nginx wget utils
+RUN apt-get install -y nginx wget
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y mariadb-server
 
 # install php 7.3
