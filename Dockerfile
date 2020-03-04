@@ -71,6 +71,11 @@ RUN	 chmod +x /tmp/start.sh
 
 # Open port + starting server
 
+CMD service nginx start \
+&& service mysql start \
+&& service php7.3-fpm start \
+&& nginx -g 'daemon off;'
+
 EXPOSE 80 443
 
 ENTRYPOINT [ "/tmp/start.sh" ]
