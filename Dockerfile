@@ -66,16 +66,18 @@ RUN service mysql start \
 
 COPY srcs/localhost.key /etc/ssl/private/nginx-cert.key
 COPY srcs/localhost.crt /etc/ssl/certs/nginx-cert.crt
-COPY srcs/start.sh /tmp/start.sh
-RUN	 chmod +x /tmp/start.sh
+#COPY srcs/start.sh /tmp/start.sh
+#RUN	 chmod +x /tmp/start.sh
 
 # Open port + starting server
 
 CMD service nginx start \
 && service mysql start \
 && service php7.3-fpm start \
-&& nginx -g 'daemon off;'
+&& nginx -g 'daemon off;' \
+&& tail /dev/null
+
 
 EXPOSE 80 443
 
-ENTRYPOINT [ "/tmp/start.sh" ]
+#ENTRYPOINT [ "/tmp/start.sh" ]
