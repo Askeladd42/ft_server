@@ -49,7 +49,7 @@ define('NONCE_SALT',       '_Ia/iuPYgw0#/wChs:&YrDBTA473v(/c&FFYo+q.=AE;Ls_=k*>C
 
 $table_prefix = 'wp_';
 
-# WP_DISABLE_FATAL_ERROR_HANDLER (here, is desativated)
+# WP_DISABLE_FATAL_ERROR_HANDLER (here, is deactivated)
 
 define( 'WP_DEBUG', false );
 if ( WP_DEBUG ) {
