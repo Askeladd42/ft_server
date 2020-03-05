@@ -69,4 +69,4 @@ RUN	 chmod +x /tmp/start.sh
 
 EXPOSE 80 443
 
-ENTRYPOINT [ "/tmp/start.sh" ]
+ENTRYPOINT [ "/tmp/start.sh" , "nginx", "-g", "deamon off;"]
