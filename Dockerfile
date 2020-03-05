@@ -45,7 +45,7 @@ COPY srcs/phpmyadmin-config.php /var/www/html/phpmyadmin
 # wordpress configuration
 
 COPY srcs/wp-config.php /var/www/html/wordpress
-#COPY srcs/wordpress_database.sql /tmp
+COPY srcs/wordpress_database.sql /tmp
 
 # init the mysql/maria-db database
 
@@ -56,7 +56,7 @@ RUN service mysql start \
 	&& mysql -u root -e "GRANT ALL PRIVILEGES ON phpmyadmin.* TO 'plam'@'localhost' IDENTIFIED BY 'oof'" \
 	&& mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'plam'@'localhost' IDENTIFIED BY 'oof'" \
 	&& mysql -u root -e "FLUSH PRIVILEGES" \
-	&& mysql wordpress_database < /tmp/wordpress_database.sql
+	&& mysql wordpress_database > /tmp/wordpress_database.sql
 
 # SSL creation
 
