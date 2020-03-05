@@ -55,7 +55,7 @@ RUN service mysql start \
 	&& mysql -u root -e "GRANT ALL PRIVILEGES ON wordpress_database.* TO 'plam'@'localhost' IDENTIFIED BY 'oof'" \
 	&& mysql -u root -e "GRANT ALL PRIVILEGES ON phpmyadmin.* TO 'plam'@'localhost' IDENTIFIED BY 'oof'" \
 	&& mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'plam'@'localhost' IDENTIFIED BY 'oof'" \
-	&& mysql -u root -e "FLUSH PRIVILEGES" \
+	&& mysql -u root -e "FLUSH PRIVILEGES"
 	#&& mysql wordpress_database > /tmp/wordpress_database.sql
 
 # SSL creation
