@@ -47,6 +47,17 @@ COPY srcs/phpmyadmin-config.php /var/www/html/phpmyadmin
 COPY srcs/wp-config.php /var/www/html/wordpress
 COPY srcs/wordpress_database.sql /tmp
 
+# init the mysql/maria-db database
+
+RUN service mysql start \
+	&& mysql -u root -e "CREATE DATABASE wordpress_database" \
+	&& mysql -u root -e "CREATE USER 'plam'@'localhost' IDENTIFIED BY 'oof'" \
+	&& mysql -u root -e "GRANT ALL PRIVILEGES ON wordpress_database.* TO 'plam'@'localhost' IDENTIFIED BY 'oof'" \
+	&& mysql -u root -e "GRANT ALL PRIVILEGES ON phpmyadmin.* TO 'plam'@'localhost' IDENTIFIED BY 'oof'" \
+	&& mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'plam'@'localhost' IDENTIFIED BY 'oof'" \
+	&& mysql -u root -e "FLUSH PRIVILEGES" \
+	&& mysql wordpress_database < /tmp/wordpress_database.sql
+
 # SSL creation
 
 COPY srcs/localhost.key /etc/ssl/private/nginx-cert.key
@@ -59,14 +70,3 @@ RUN	 chmod +x /tmp/start.sh
 EXPOSE 80 443
 
 ENTRYPOINT [ "/tmp/start.sh" ]
-
-# init the mysql/maria-db database
-
-RUN service mysql start \
-	&& mysql -u root -e "CREATE DATABASE wordpress_database" \
-	&& mysql -u root -e "CREATE USER 'plam'@'localhost' IDENTIFIED BY 'oof'" \
-	&& mysql -u root -e "GRANT ALL PRIVILEGES ON wordpress_database.* TO 'plam'@'localhost' IDENTIFIED BY 'oof'" \
-	&& mysql -u root -e "GRANT ALL PRIVILEGES ON phpmyadmin.* TO 'plam'@'localhost' IDENTIFIED BY 'oof'" \
-	&& mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'plam'@'localhost' IDENTIFIED BY 'oof'" \
-	&& mysql -u root -e "FLUSH PRIVILEGES" \
-	&& mysql wordpress_database < /tmp/wordpress_database.sql
