@@ -21,7 +21,7 @@ RUN cd /tmp \
 	&& tar -zxvf latest.tar.gz \
 	&& mv wordpress/ /var/www/html/wordpress \
 	&& chown -R www-data:www-data /var/www/html/wordpress \
-	&& chmod 755 -R /var/www/html/wordpress/
+	&& chmod 777 -R /var/www/html/wordpress/
 
 #install phpmyadmin
 
