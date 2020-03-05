@@ -2,6 +2,6 @@
 
 service nginx start
 service mysql start
-service php-fpm start
+service php7.3-fpm start
 
 bash
