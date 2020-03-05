@@ -45,7 +45,7 @@ COPY srcs/phpmyadmin-config.php /var/www/html/phpmyadmin
 # wordpress configuration
 
 COPY srcs/wp-config.php /var/www/html/wordpress
-COPY srcs/wordpress_database.sql /tmp
+#COPY srcs/wordpress_database.sql /tmp
 
 # init the mysql/maria-db database
 
