@@ -30,8 +30,8 @@ RUN cd /tmp \
 	&& tar -xvf phpMyAdmin-4.9.4-all-languages.tar.gz \
 	&& rm phpMyAdmin-4.9.4-all-languages.tar.gz \
 	&& mv phpMyAdmin* /var/www/html/phpmyadmin \
-	&& chown -R www-data:www-data /var/www/html/phpmyadmin \ 
-	&& chmod 777 /var/www/html/phpmyadmin
+	&& chown -R www-data:www-data /var/www/html/phpmyadmin \
+	&& chmod -R 777 /var/www/html/phpmyadmin
 
 # nginx config
 
