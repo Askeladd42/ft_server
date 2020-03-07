@@ -33,10 +33,11 @@ RUN cd /tmp \
 	&& chown -R www-data:www-data /var/www/html/phpmyadmin \
 	&& chmod -R 777 /var/www/html/phpmyadmin
 
-# nginx config
+# nginx config (autoindex on/off will influence the config used)
 
-COPY srcs/nginx.conf /etc/nginx/sites-available/localhost
-RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
+ENV AUTOINDEX ON
+#COPY srcs/nginx.conf /etc/nginx/sites-available/localhost
+#RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
 
 # phpMyAdmin configuration
 
@@ -67,6 +68,7 @@ RUN	 chmod +x /tmp/start.sh
 
 # Open port + starting server
 
+RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
 EXPOSE 80 443
 
 ENTRYPOINT [ "/tmp/start.sh" , "nginx", "-g", "deamon off;"]
