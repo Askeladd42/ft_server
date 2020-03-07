@@ -41,6 +41,9 @@ $cfg['Servers'][$i]['host'] = 'localhost';
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = false;
 
+/* Allowance of the SSL certificates */
+
+
 /**
  * phpMyAdmin configuration storage settings.
  */
