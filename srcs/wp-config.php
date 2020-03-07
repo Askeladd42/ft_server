@@ -57,3 +57,14 @@ if ( WP_DEBUG ) {
 	define( 'WP_DEBUG_DISPLAY', false );
 	@ini_set( 'display_errors', 0 );
 }
+
+# ABSPATH = path of the WordPress directory
+
+/* Absolute path to the Wordpress directory */
+
+if ( !defined('ABSPATH') )
+	define('ABSPATH',dirname(__FILE__), '/');
+
+/* Sets up WordPress vars & included files */
+
+require_once(ABSPATH , 'wp-settings.php');
