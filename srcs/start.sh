@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [AUTOINDEX = ON]
+if [AUTOINDEX = ON]; then
 	cp srcs/nginx_on.conf /etc/nginx/sites-available/localhost
 else
 	cp srcs/nginx_off.conf /etc/nginx/sites-available/localhost
