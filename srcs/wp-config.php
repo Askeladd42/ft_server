@@ -23,7 +23,7 @@ define( 'DB_NAME', 'wordpress_database' );
 /** MySQL database username */
 define( 'DB_USER', 'plam' );
 /** MySQL database password */
-define('DB_PASSWORD', 'oof');
+define('DB_PASSWORD', 'oof' );
 /** MySQL hostname */
 define( 'DB_HOST', 'localhost' );
 /** Database Charset to use in creating database tables. */
