@@ -33,11 +33,12 @@ RUN cd /tmp \
 	&& chown -R www-data:www-data /var/www/html/phpmyadmin \
 	&& chmod -R 777 /var/www/html/phpmyadmin
 
-# nginx config (autoindex on/off will influence the config used)
-
-ENV AUTOINDEX ON
-#COPY srcs/nginx.conf /etc/nginx/sites-available/localhost
-#RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
+# nginx config
+ENV AUTOINDEX="ON"
+COPY srcs/nginx_off.conf /tmp
+COPY srcs/nginx_on.conf /tmp
+RUN mkdir /etc/nginx/sites-available/localhost
+RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
 
 # phpMyAdmin configuration
 
