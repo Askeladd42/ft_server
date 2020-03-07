@@ -68,7 +68,6 @@ RUN	 chmod +x /tmp/start.sh
 
 # Open port + starting server
 
-RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
 EXPOSE 80 443
 
 ENTRYPOINT [ "/tmp/start.sh" , "nginx", "-g", "deamon off;"]
