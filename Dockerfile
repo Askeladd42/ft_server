@@ -34,10 +34,9 @@ RUN cd /tmp \
 	&& chmod -R 777 /var/www/html/phpmyadmin
 
 # nginx config
-ENV AUTOINDEX=OFF
+ENV AUTOINDEX=ON
 COPY srcs/nginx_off.conf /tmp
 COPY srcs/nginx_on.conf /tmp
-RUN mkdir /etc/nginx/sites-available/localhost
 
 RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
 
